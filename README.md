@@ -1,4 +1,4 @@
-# HK Blog Free
+# HK Blog Freedom
 
 Next.js (App Router)、Tailwind CSS、microCMS を使用して構築された個人の技術ブログ兼ポートフォリオです。
 シンプルなUIで記事の内容が見やすくなるように設計しています。
