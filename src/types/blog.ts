@@ -2,7 +2,7 @@ import type { MicroCMSDate, MicroCMSImage } from "microcms-js-sdk";
 
 export type Tag = {
   id: string;
-  tagName: string;
+  name: string;
 } & MicroCMSDate;
 
 export type BlogPost = {
@@ -10,7 +10,7 @@ export type BlogPost = {
   title: string;
   content: string;
   eyecatch?: MicroCMSImage;
-  tags: Tag[];
+  tag: Tag;
   isPinned: boolean;
   publishedAt: string;
   revisedAt: string;
