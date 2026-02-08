@@ -1,9 +1,10 @@
-import { getList } from "@/lib/microcms";
+import { getList, getTagList } from "@/lib/microcms";
 import { PostCard } from "@/components/model/PostCard";
 import { Header } from "@/components/layout/Header";
 
 export default async function Home() {
   const { contents: posts } = await getList({ limit: 10 });
+  const { contents: tags } = await getTagList({ limit: 10 });
 
   // ピン留めされた記事とそれ以外を分ける
   // （今回は簡易的にフロントでフィルタリングも可能だが、本来はクエリで分けるか、全件取得して分ける。ここでは単純にリスト表示する）
@@ -13,7 +14,7 @@ export default async function Home() {
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
-      <Header />
+      <Header tags={tags} />
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {posts.map((post) => (
