@@ -27,12 +27,14 @@ export const PostCard = ({ post }: Props) => {
         )}
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
-            <span
-              key={post.tag.id}
-              className="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded"
-            >
-              # {post.tag.name}
-            </span>
+            {post.tags.map((tag) => (
+              <span
+                key={tag.id}
+                className="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded"
+              >
+                # {tag.name}
+              </span>
+            ))}
           </div>
           <h2 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2">
             {post.title}

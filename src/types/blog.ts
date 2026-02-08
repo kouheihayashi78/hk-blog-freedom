@@ -10,7 +10,7 @@ export type BlogPost = {
   title: string;
   content: string;
   eyecatch?: MicroCMSImage;
-  tag: Tag;
+  tags: Tag[];
   isPinned: boolean;
   publishedAt: string;
   revisedAt: string;
