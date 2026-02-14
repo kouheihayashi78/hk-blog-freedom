@@ -3,7 +3,12 @@ import { PostCard } from "@/components/model/PostCard";
 import { Header } from "@/components/layout/Header";
 
 export default async function Home() {
-  const { contents: posts } = await getList({ limit: 10 });
+  const { contents: posts } = await getList(
+    { 
+      limit: 10,
+      orders: '-isPinned, -publishedAt' // ピン留め、最新の公開日
+    }
+  );
   const { contents: tags } = await getTagList({ limit: 10 });
 
   // ピン留めされた記事とそれ以外を分ける
