@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { BlogPost } from "@/types/blog";
+import { SyntaxHighlighter } from "@/components/ui/SyntaxHighlighter";
 
 export async function generateStaticParams() {
   const { contents } = await getList();
@@ -27,6 +28,7 @@ export default async function PostDetail({ params }: Props) {
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl animate-fade-in-up">
+      <SyntaxHighlighter />
       <article>
         {/* Header */}
         <header className="mb-10">
