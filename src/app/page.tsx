@@ -1,21 +1,25 @@
 import { getList, getTagList } from "@/lib/microcms";
 import { PostCard } from "@/components/model/PostCard";
 import { Header } from "@/components/layout/Header";
+import { Pagination } from "@/components/ui/Pagination";
 
-export default async function Home() {
-  const { contents: posts } = await getList(
-    { 
-      limit: 10,
-      orders: '-isPinned, -publishedAt' // ピン留め、最新の公開日
-    }
-  );
+const PER_PAGE = 6;
+
+type Props = {
+  searchParams: Promise<{ page?: string }>;
+};
+
+export default async function Home({ searchParams }: Props) {
+  const params = await searchParams;
+  const page = Number(params.page) || 1;
+
+  const { contents: posts, totalCount } = await getList({
+    limit: PER_PAGE,
+    offset: (page - 1) * PER_PAGE,
+    orders: "-isPinned,-publishedAt", // ピン留め、最新の公開日
+  });
+  
   const { contents: tags } = await getTagList({ limit: 10 });
-
-  // ピン留めされた記事とそれ以外を分ける
-  // （今回は簡易的にフロントでフィルタリングも可能だが、本来はクエリで分けるか、全件取得して分ける。ここでは単純にリスト表示する）
-  // 要件にある「ピン留め」を優先表示するロジックは、別途API側で制御するか、
-  // ここで isPinnedプロパティを見て並び替えるなどが考えられる
-  // 今回はまず単純な一覧表示を実装
 
   return (
     <main className="container mx-auto px-4 py-8 max-w-4xl">
@@ -26,8 +30,14 @@ export default async function Home() {
           <PostCard key={post.id} post={post} />
         ))}
       </section>
-      
-      {posts.length === 0 && (
+
+      {posts.length > 0 ? (
+        <Pagination
+          totalCount={totalCount}
+          perPage={PER_PAGE}
+          currentPage={page}
+        />
+      ) : (
         <p className="text-center text-gray-500 mt-10">
           記事がまだありません。
         </p>
