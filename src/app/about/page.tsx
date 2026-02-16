@@ -99,7 +99,7 @@ export default function AboutPage() {
         </h2>
         <div className="flex flex-wrap gap-4">
           <a
-            href="https://github.com/hayashikouhei"
+            href="https://github.com/kouheihayashi78"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
@@ -110,7 +110,7 @@ export default function AboutPage() {
             GitHub
           </a>
           <a
-            href="https://twitter.com/"
+            href="https://x.com/kouhei155048"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 bg-[#1DA1F2] text-white rounded-lg hover:bg-[#1a91da] transition-colors"
